@@ -52,8 +52,12 @@ class TestChess(unittest.TestCase):
         """Test the getColumns method."""
         cols = self.obj.getBoardColumns()
         self.assertEqual(set(cols), set([1, 2, 3, 4, 5, 6, 7, 8]))
+        self.assertEqual(cols[0], 1)
+        self.assertEqual(cols[-1], 8)
 
     def testGetRows(self):
         """Test the getRows method."""
-        cols = self.obj.getBoardRows()
-        self.assertEqual(set(cols), set([1, 2, 3, 4, 5, 6, 7, 8]))
+        rows = self.obj.getBoardRows()
+        self.assertEqual(set(rows), set([1, 2, 3, 4, 5, 6, 7, 8]))
+        self.assertEqual(rows[0], 8)
+        self.assertEqual(rows[-1], 1)
