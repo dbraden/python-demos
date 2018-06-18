@@ -46,7 +46,6 @@ class TestChess(unittest.TestCase):
         """Negative test cases for the getColumnLetter method."""
         self.assertFalse(self.obj.getColumnLetter(0))
         self.assertFalse(self.obj.getColumnLetter(9))
-        self.assertFalse(self.obj.getColumnLetter(0))
         self.assertFalse(self.obj.getColumnLetter(-1))
         self.assertFalse(self.obj.getColumnLetter(None))
 
