@@ -129,7 +129,7 @@ class ChessCalculator(object):
         except ValueError:
             return None
 
-        if index > 8:
+        if index > 8 or index < 1:
             return None
 
         return cols[index - 1]
