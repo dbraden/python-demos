@@ -59,8 +59,10 @@ class Knight(ChessPiece):
 
     def isValidMove(self, row, column):
         """Whether this is a valid move."""
-        isValid = False
+        if self.isPiecePosition(row, column):
+            return False
 
+        isValid = False
         moves = [[-2, -1], [2, -1], [2, 1], [-2, 1],
                  [-1, -2], [1, -2], [1, 2], [-1, 2]]
         for move in moves:
@@ -81,13 +83,13 @@ class King(ChessPiece):
 
     def isValidMove(self, row, column):
         """Whether this is a valid move."""
+        if self.isPiecePosition(row, column):
+            return False
+
         isValid = False
         if (abs(row - self.getRow()) <= 1 and
                 abs(column - self.getColumn()) <= 1):
             isValid = True
-
-        if self.isPiecePosition(row, column):
-            isValid = False
 
         return isValid
 
@@ -101,21 +103,20 @@ class Queen(ChessPiece):
 
     def isValidMove(self, row, column):
         """Whether this is a valid move."""
-        isValid = False
+        if self.isPiecePosition(row, column):
+            return False
+
         if row == self.getRow():
-            isValid = True
+            return True
         elif column == self.getColumn():
-            isValid = True
+            return True
         else:
             rowDiff = abs(row - self.getRow())
             colDiff = abs(column - self.getColumn())
             if rowDiff == colDiff:
-                isValid = True
+                return True
 
-        if self.isPiecePosition(row, column):
-            isValid = False
-
-        return isValid
+        return False
 
 
 class Rook(ChessPiece):
@@ -127,17 +128,15 @@ class Rook(ChessPiece):
 
     def isValidMove(self, row, column):
         """Whether this is a valid move."""
-        isValid = False
+        if self.isPiecePosition(row, column):
+            return False
+
         rowDiff = abs(row - self.getRow())
         colDiff = abs(column - self.getColumn())
-
         if rowDiff == colDiff:
-            isValid = True
+            return True
 
-        if self.isPiecePosition(row, column):
-            isValid = False
-
-        return isValid
+        return False
 
 
 class Castle(ChessPiece):
@@ -149,11 +148,10 @@ class Castle(ChessPiece):
 
     def isValidMove(self, row, column):
         """Whether this is a valid move."""
-        isValid = row == self.getRow() or column == self.getColumn()
         if self.isPiecePosition(row, column):
-            isValid = False
+            return False
 
-        return isValid
+        return row == self.getRow() or column == self.getColumn()
 
 
 registerClass('knight', Knight)
